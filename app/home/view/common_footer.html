@@ -1,0 +1,92 @@
+</div>
+</div>
+<!--footer-->
+<footer class="footer">
+
+    <div class="footer-nav">
+        <div class="container">
+            <div class="row">
+
+                {volist name="$category" id="c"}
+                <div class="col-sm-2 col-xs-6">
+                    <h4 class="list-title">
+                        <a href="{:url('home/'.$c['catdir'].'/index',['catId'=>$superCategory['id']] )}">{$c.catname}</a>
+                    </h4>
+                    <ul>
+                        {volist name="$c.prods" id="p"}
+                        <li>
+                            <a href="{:url('home/'.$p['catdir'].'/info',array('id'=>$p['id'],'catId'=>$p['catid']))}"
+                               class="item-link">{$p.title}</a></li>
+                        {/volist}
+                        {volist name="$c.sub" id="sc"}
+                        <li class="list-group-wrap">
+                            <a href="{:url('home/'.$sc['catdir'].'/index',['catId'=>$sc['id']] )}" class="link-group">{$sc.catname}</a>
+                            <ul class="hidden-xs">
+                                {volist name="$sc.prods" id="p"}
+                                <li>
+                                    <a href="{:url('home/'.$p['catdir'].'/info',array('id'=>$p['id'],'catId'=>$p['catid']))}"
+                                       class="item-link">{$p.title}</a></li>
+                                {/volist}
+                            </ul>
+                        </li>
+                        {/volist}
+
+                    </ul>
+                </div>
+                <div class="divider clearfix visible-xs-block"></div>
+                {/volist}
+
+                <div class="col-md-2 col-sm-3 col-md-offset-1">
+                    <div class="hidden-xs">
+                        <h4 class="list-title">友情链接</h4>
+                        <ul>
+                            {volist name="linkList" id="vo"}
+                            <li><a href="{$vo.url}" class="item-link" rel="external" title="{$vo.name}">{$vo.name}</a>
+                            </li>
+                            {/volist}
+                            <li><a href="https://www." class="item-link" target="_blank" rel="nofollow" title="技术支持">左岸视觉设计技术支持</a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+
+                </div>
+            </div>
+            <a class="back-top svg-icon" href="index_index.html#"><span class="hover-icon"></span></a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+
+            <div class="copy">
+                &copy; {$sys.copyright} {$sys.title}版权所有。
+            </div>
+            <form id="form1" runat="server">
+                <div id="bdshare" style="float :right; width:200px ;" class="bdshare_t bds_tools get-codes-bdshare">
+                    <span style="float :left; line-height:28px ;">分享 </span><a class="bds_fbook"></a>
+                    <a class="bds_twi"></a>
+                    <a class="bds_tsina"></a>
+                    <a class="bds_tqq"></a>
+                    <a class="bds_baidu"></a>
+                    <span class="bds_more"></span>
+                </div>
+                <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=938050"></script>
+                <script type="text/javascript" id="bdshell_js"></script>
+                <style>
+                    #bdshare *{
+                        height: 28px!important;
+                        line-height: 28px!important;
+                    }
+                </style>
+                <script type="text/javascript">
+                    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date() / 3600000)
+                </script>
+            </form>
+        </div>
+    </div>
+
+</footer>
+</div>
+</body>
+</html>

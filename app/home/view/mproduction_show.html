@@ -1,0 +1,443 @@
+{include file="common/head"/}
+
+<link rel="stylesheet" type="text/css" href="__HOME__/css/framework.css"/>
+
+<!--wrap-CONTENT-->
+<div class="wrap-content">
+
+
+
+    <div class="subnav">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="{:url('home/index/index')}">首页</a></li>
+                {if condition="$superCategory['module'] neq '' "}
+                <li><a href="{:url('home/'.$superCategory['module'].'/index',['catId'=>$superCategory['id']] )}">{$superCategory.catname}</a></li>
+                {/if}
+                {if condition="MODULE_NAME neq '' "}
+                <li class="active"><a href="{:url('home/'.MODULE_NAME.'/index',array('catId'=>input('catId')))}">{$thisCategory.catname}</a></li>
+                {/if}
+                <li class="active">{$info.title}</li>
+            </ul>
+            <div class="dropwown-select">
+                <a href="category_list.html#mcategory_list.html" data-toggle="dropdown" class="dropdown-toggle">
+                    全部产品<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    {clt:list db='mproduction' join id='p' limit='100000000' order="listorder" }
+                    <li>
+                        <a href="{:url('home/'.$thisCategory['catdir'].'/info',array('id'=>$p['id'],'catId'=>$p['catid']))}">
+                            {$p.title}
+                        </a>
+                    </li>
+                    {/clt:list}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="product-info-detail-block">
+        <div class="container">
+            <div class="product-text-wrap">
+                <h2 class="title">
+                    <div class="title-bar" style="background-color: #6e4d8f;"></div>
+                    {$info.title}<br>
+                </h2>
+                <p class="description">{$info.content}</p>
+            </div>
+            <div class="product-slider">
+                {volist name=":preg_split('/;/',$info.pictures)" id="vo"}
+                {if condition="$vo neq ''" }
+                <div class="img-wrap">
+                    <img src="__PUBLIC__{$vo}" alt="">
+                </div>
+                {/if}
+                {/volist}
+            </div>
+        </div>
+    </div>
+
+    <div class="details-product-wrap">
+        <div class="details-product">
+            <div class="container">
+                <div class="content-block">
+                    <div class="top-panel">
+                        <h2 class="title">主要优点和特性</h2>
+                        <span class="detail-toggle" data-toggle="collapse" data-target="#benefits"></span>
+                    </div>
+                    <div class="detail-content collapse in" id="benefits">
+                        <div class="row">
+
+                            {if condition="$info.title1 neq '' "}
+                            <div class="col-md-4 col-sm-6 item">
+                                            <span class="icon icon-support-relief"
+                                                  style="background-image: url('__PUBLIC__{$info.pic1}')"></span>
+                                <div class="cnt">
+                                    <h3 class="name">{$info.title1}</h3>
+                                    <p class="description">
+                                        {$info.conten1}
+                                    </p>
+                                </div>
+                            </div>
+                            {/if}
+
+                            {if condition="$info.title2 neq '' "}
+                            <div class="col-md-4 col-sm-6 item">
+                                            <span class="icon icon-support-relief"
+                                                  style="background-image: url('__PUBLIC__{$info.pic2}')"></span>
+                                <div class="cnt">
+                                    <h3 class="name">{$info.title2}</h3>
+                                    <p class="description">
+                                        {$info.conten2}
+                                    </p>
+                                </div>
+                            </div>
+                            {/if}
+
+                            {if condition="$info.title3 neq '' "}
+                            <div class="col-md-4 col-sm-6 item">
+                                            <span class="icon icon-support-relief"
+                                                  style="background-image: url('__PUBLIC__{$info.pic3}')"></span>
+                                <div class="cnt">
+                                    <h3 class="name">{$info.title3}</h3>
+                                    <p class="description">
+                                        {$info.conten3}
+                                    </p>
+                                </div>
+                            </div>
+                            {/if}
+
+                            {if condition="$info.title4 neq '' "}
+                            <div class="col-md-4 col-sm-6 item">
+                                            <span class="icon icon-support-relief"
+                                                  style="background-image: url('__PUBLIC__{$info.pic4}')"></span>
+                                <div class="cnt">
+                                    <h3 class="name">{$info.title4}</h3>
+                                    <p class="description">
+                                        {$info.conten4}
+                                    </p>
+                                </div>
+                            </div>
+                            {/if}
+
+                            {if condition="$info.title5 neq '' "}
+                            <div class="col-md-4 col-sm-6 item">
+                                            <span class="icon icon-support-relief"
+                                                  style="background-image: url('__PUBLIC__{$info.pic5}')"></span>
+                                <div class="cnt">
+                                    <h3 class="name">{$info.title5}</h3>
+                                    <p class="description">
+                                        {$info.conten5}
+                                    </p>
+                                </div>
+                            </div>
+                            {/if}
+
+                            {if condition="$info.title6 neq '' "}
+                            <div class="col-md-4 col-sm-6 item">
+                                            <span class="icon icon-support-relief"
+                                                  style="background-image: url('__PUBLIC__{$info.pic6}')"></span>
+                                <div class="cnt">
+                                    <h3 class="name">{$info.title6}</h3>
+                                    <p class="description">
+                                        {$info.conten6}
+                                    </p>
+                                </div>
+                            </div>
+                            {/if}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="details-product">
+            <div class="container">
+                <div class="content-block">
+                    <div class="top-panel">
+                        <h2 class="title">{$info.title}细节</h2>
+                        <span class="detail-toggle" data-toggle="collapse"
+                              data-target="#specifications"></span>
+                    </div>
+
+                    <div class="detail-content specifications collapse in" id="specifications">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="cnt">
+                                    {$info.detail_content}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="cnt">
+                                    {$info.detail_specification}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="__HOME__/js/handlebars-v2.0.0.js"></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>-->
+
+    <!--<script src="__HOME__/js/jquery.storelocator.js"></script>-->
+    <!--<script type="text/javascript">-->
+    <!--$(function () {-->
+    <!--$.technogel.storeLocator.init({-->
+    <!--onLoadLat: 22.396428,-->
+    <!--onLoadLng: 114.10949700000003,-->
+    <!--onLoadZoom: 9,-->
+    <!--onClickZoom: 14,-->
+    <!--searchLocationsUrl: '/umbraco/Api/StoreLocatorApi/Locations',-->
+    <!--locatorSettingsUrl: '/umbraco/Api/StoreLocatorApi/Settings',-->
+    <!--listTemplatePath: '/css/templates/location-list-description.html',-->
+    <!--infoboxTemplatePath: '/css/templates/infowindow-description.html',-->
+    <!--translations: {-->
+    <!--directions: '说明',-->
+    <!--website: '网站',-->
+    <!--pillows: '枕',-->
+    <!--mattresses: '床垫',-->
+    <!--seatings: '座位支架',-->
+    <!--vivePillows: 'VIVE枕头',-->
+    <!--viveMattresses: 'VIVE床垫',-->
+    <!--mats: '垫',-->
+    <!--kilometers: '公里',-->
+    <!--kilometer: 'kilometer',-->
+    <!--miles: '英里',-->
+    <!--mile: '英里'-->
+    <!--},-->
+    <!--availableProductCheckboxes: ["hasPillows", "hasMattresses", "hasSeating", "hasVivePillows", "hasViveMattress", "hasMats"],-->
+    <!--lengthUnit: '公里'-->
+    <!--});-->
+    <!--});-->
+    <!--</script>-->
+
+
+    <style>
+        .review-container.noreview {
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        .review-container .review-block {
+            min-height: 200px;
+        }
+
+        .review-container .review-block .content {
+            height: 60%;
+        }
+
+        #breadcrumb-content ul {
+            margin-bottom: 0;
+            float: left;
+        }
+
+        #breadcrumb-content ul li {
+            color: #afafaf;
+            text-shadow: 0 1px 1px #f8f8f8;
+            margin-bottom: 0;
+            padding: 7px 24px 8px 7px;
+            background-image: url(../images/breadcrumb-arrow.png);
+            background-repeat: no-repeat;
+            background-position: right -1px;
+            font-size: 11px;
+            display: inline-block;
+        }
+
+        #breadcrumb-content ul li a, #breadcrumb-content ul li a:visited {
+            color: #afafaf;
+            text-shadow: 0 1px 1px #f8f8f8;
+            text-decoration: none;
+        }
+
+        form#contactform input {
+            width: 60%;
+            margin-bottom: 15px;
+            float: left;
+        }
+
+        input, textarea {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            padding: 8px 7px;
+            border: solid 1px #d5d5d5;
+            outline: 0;
+            width: 100%;
+            color: #c1c1c1;
+            background: #FFFFFF;
+            background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+            background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+
+        form#contactform label {
+            font-size: 13px;
+            line-height: 57px;
+            width: 37%;
+            margin-top: -11px;
+            margin-bottom: 0;
+            float: right;
+        }
+
+        form#contactform em {
+            color: #db4e43;
+            display: inline;
+        }
+
+        em {
+            font-style: italic;
+        }
+        .mytitle{
+            margin-top: 0;
+            margin-bottom: 60px;
+            font-size: 30px;
+            font-weight: 300;
+            text-align: center;
+        }
+    </style>
+
+    <div class="review-container noreview">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 review-block-wrap">
+                    <!--<div class="review-block">-->
+                    <!--<div class="content">-->
+                    <h2 class="mytitle">联系我们</h2>
+
+
+                    <section id="content-wrapper">
+                        <div class="frow">
+                            <div class="six columns">
+                                <h5>留下您宝贵的意见</h5>
+                                <div id="contact-form-area">
+                                    <!-- Contact Form Start //-->
+                                    <form action="#" id="contactform"/>
+                                    <fieldset>
+                                        <label>标题 <em>*</em></label>
+                                        <input type="text" name="title" class="textfield" id="title" value=""/>
+                                        <label>称呼 <em>*</em></label>
+                                        <input type="text" name="name" class="textfield" id="name" value=""/>
+                                        <label>邮箱 <em>*</em></label>
+                                        <input type="text" name="email" class="textfield" id="email" value=""/>
+                                        <textarea name="content" id="content" class="textarea" cols="2"
+                                                  rows="4"></textarea>
+                                        <div class="clear"></div>
+                                        <label>&nbsp;</label>
+                                        <input type="button" name="submit" class="buttoncontact" id="buttonsend"
+                                               value="提交"/>
+                                        <span class="loading" style="display: none;">Please wait..</span>
+                                        <div class="clear"></div>
+                                    </fieldset>
+                                    </form>
+                                    <!-- Contact Form End //-->
+                                </div>
+                            </div>
+                            <div class="six columns" style="padding-top: 30px;">
+                                <div class="panel stamp">
+                                    <h5>联系信息</h5>
+                                    {$sys.contact_say}
+                                    <ul class="contact-info">
+                                        <li class="address-icon">
+                                            <a href="#" title="{$sys.title}">{$sys.title}</a>
+                                        </li>
+                                        <li class="icon-address-book">地址 : {$sys.ads}</li>
+                                        <li class="icon-phone">电话 : {$sys.tel}</li>
+                                        <li class="email-icon">邮箱 : {$sys.email}</li>
+                                        <li class="qq-icon">QQ  : <a href="tencent://message/?uin={$sys.qq}&Site=&Menu=yes" title="点击加好友">{$sys.qq}</a></li>
+                                        <li class="time-icon">当前时间: {:toDate(time(),'Y-m-d H:i:s')}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="twelve columns">
+
+                            </div>
+                        </div>
+                    </section>
+                    <script>
+                        $('#buttonsend').click(function () {
+                            var title = $('#title').val();
+                            var name = $('#name').val();
+                            var email = $('#email').val();
+                            var content = $('#content').val();
+                            if ($.trim(title) == '') {
+                                alert('标题不能为空');
+                                return false;
+                            }
+                            if ($.trim(name) == '') {
+                                alert('称呼不能为空');
+                                return false;
+                            }
+                            if ($.trim(email) == '') {
+                                alert('邮箱不能为空');
+                                return false;
+                            }
+                            if ($.trim(content) == '') {
+                                alert('内容不能为空');
+                                return false;
+                            }
+                            $.post("{:url('senMsg')}", {
+                                title: title,
+                                name: name,
+                                email: email,
+                                content: content
+                            }, function (data) {
+                                if (data.status == 1) {
+                                    alert('留言成功！感谢您对我们的支持！');
+                                    window.location.href = "{:url('home/contact/index',array('catId'=>input('catId')))}"
+                                } else {
+                                    alert('留言失败！重新提交试试！');
+                                }
+                            })
+                        })
+                    </script>
+
+
+                    <!--<p class="review-title">就 Estasi坚实款 联系我们</p>-->
+                    <!--<div class="btn-wrap">-->
+                    <!--<a href="../../书写评论/index.html" class="btn custom-btn btn-lg ">在此留言</a>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="other-products">
+        <div class="container">
+            <h2 class="title">你也许也喜欢</h2>
+            <div class="row">
+                {volist name="alsoLikes" id="vo"}
+                <a class="col-md-3 col-xs-6 item"
+                   href="{:url('home/'.$vo['catdir'].'/info',array('id'=>$vo['id'],'catId'=>$vo['catid']))}">
+                        <span class="item-cnt">
+                            <span class="item-cnt-top">
+                                <span class="name">{$vo.title}</span>
+                            </span>
+                                <img src="__PUBLIC__{$vo.thumb}" alt="">
+                        </span>
+                </a>
+                {/volist}
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+{include file="common/footer"/}

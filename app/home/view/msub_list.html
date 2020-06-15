@@ -1,0 +1,85 @@
+{include file="common/head"/}
+
+
+<!--wrap-CONTENT-->
+<div class="wrap-content">
+
+
+    <div class="subnav">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="{:url('home/index/index')}">首页</a></li>
+                <li class="active">{$thisCategory.title}</li>
+            </ul>
+            <div class="dropwown-select">
+                <a href="category_list.html#mcategory_list.html" data-toggle="dropdown" class="dropdown-toggle">
+                    全部产品<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    {clt:list db='mproduction' id='p' limit='100000000' order="listorder" }
+                    <li>
+                        <a href="{:url('home/'.$thisCategory['catdir'].'/info',array('id'=>$p['id'],'catId'=>$p['catid']))}">
+                            {$p.title}
+                        </a>
+                    </li>
+                    {/clt:list}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+
+    <section class="section-page-intro">
+        <div class="container">
+            <h1>{$thisCategory.title}</h1>
+            <div class="row">
+                <div class="description col-md-11 col-sm-10">
+                    {$thisCategory.ext_content1}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="collection-list">
+        <div class="container">
+
+            {volist name="$subCategory" id="vo"}
+            <div class="row no-gutter collection-item">
+                {if condition='$vo.image_align eq 1'}
+                <div class="col-sm-6 img"
+                     style="background-image: url(__PUBLIC__/{$vo.ext_image1})">
+                    <a href="{:url('home/'.$vo['catdir'].'/index',['catId'=>$vo['id']] )}"> </a>
+                </div>
+                {/if}
+                <div class="col-sm-6 text-wrap">
+                    <div class="cnt-wrap">
+                        <div class="cnt">
+                            <h2 class="title">{$vo.catname}</h2>
+                            <p class="txt">{$vo.ext_content2}</p>
+                            <!--title="{$v.catname}-内容管理系统">-->
+                            <!--<a href="{:url('home/'.$vo['catdir'].'/info',array('id'=>$vo['id'],'catId'=>$vo['catid']))}" -->
+                            <a href="{:url('home/'.$vo['catdir'].'/index',['catId'=>$vo['id']] )}"
+                               class="btn custom-btn btn-md"
+                               title="{$vo.title}">
+                                浏览{$vo.title}{$title}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {if condition='$vo.image_align eq 0'}
+                <div class="col-sm-6 img"
+                     style="background-image: url(__PUBLIC__/{$vo.ext_image1})">
+                    <a href="{:url('home/'.$vo['catdir'].'/index',['catId'=>$vo['id']] )}"> </a>
+                </div>
+                {/if}
+            </div>
+            {/volist}
+
+        </div>
+    </section>
+
+</div>
+
+
+{include file="common/footer"/}

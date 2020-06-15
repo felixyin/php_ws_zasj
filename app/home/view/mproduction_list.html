@@ -1,0 +1,105 @@
+{include file="common/head"/}
+
+<!--wrap-CONTENT-->
+<div class="wrap-content"class="btn custom-btn btn-md" >
+
+
+    <div class="subnav">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="{:url('home/index/index')}">首页</a></li>
+                {if condition="$vo['catdir'] neq '' "}
+                <li><a href="{:url('home/'.$vo['catdir'].'/index',['catId'=>$superCategory['id']] )}">{$superCategory.catname}</a></li>
+                {/if}
+                {if condition="$superCategory['module'] neq '' "}
+                <li><a href="{:url('home/'.$superCategory['module'].'/index',['catId'=>$superCategory['id']] )}">{$superCategory.catname}</a></li>
+                {/if}
+                <li class="active">{$thisCategory.catname}</li>
+            </ul>
+            <div class="dropwown-select">
+                <a href="category_list.html#mcategory_list.html" data-toggle="dropdown" class="dropdown-toggle">
+                    全部产品<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    {clt:list db='mproduction' id='p' limit='100000000' order="listorder" }
+                    <li>
+                        <a href="{:url('home/'.$thisCategory['catdir'].'/info',array('id'=>$p['id'],'catId'=>$p['catid']))}">
+                            {$p.title}
+                        </a>
+                    </li>
+                    {/clt:list}
+                    <!--{volist name="$category" id="c"}-->
+                    <!--{volist name="$c.sub" id="sc"}-->
+                    <!--{volist name="$sc.prods" id="p"}-->
+                    <!--<li>-->
+                        <!--<a href="{:url('home/'.$p['catdir'].'/info',array('id'=>$p['id'],'catId'=>$p['catid']))}">-->
+                            <!--{$p.title}-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--{/volist}-->
+                    <!--{/volist}-->
+                    <!--{/volist}-->
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+
+    <section class="section-page-intro">
+        <div class="container">
+            <h1>{$thisCategory.catname}</h1>
+            <div class="row">
+                <p class="description col-md-11 col-sm-10">
+                    {$thisCategory.ext_content2}
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="product-info-block ">
+        <div class="container">
+
+            {volist name="$list" id="vo"}
+            <div class="product-info-item" style="background-color: #96;">
+                <div class="product-text-wrap">
+                    <h2 class="title">
+                        <div class="title-bar" style="background-color: #6e4d8f;"></div>
+                        {$vo.title}<br><span></span>
+                    </h2>
+                    <p class="description">{$vo.descrption}</p>
+                    <!--<div class="icon-wrap">-->
+                                    <!--<span class="icon icon-hip-support"-->
+                                          <!--style="background-image: url('__HOME__/media/329627/altezza_estasi_cm.png')">1.7 厘米顶部凝胶层</span>-->
+                        <!--<span class="icon icon-hip-support"-->
+                              <!--style="background-image: url('__HOME__/media/19796/target_50px.png')">3-区域定位缓冲</span>-->
+                        <!--<span class="icon icon-hip-support"-->
+                              <!--style="background-image: url('__HOME__/media/19779/firm_50px.png')">柔软支撑</span>-->
+                    <!--</div>-->
+
+                    <a href="{:url('home/'.$vo['catdir'].'/info',array('id'=>$vo['id'],'catId'=>$vo['catid']))}" class="btn custom-btn btn-default">了解更多</a>
+                </div>
+                <div class="product-img-wrap">
+                    <div class='product-slider'>
+                        {volist name=":preg_split('/;/',$vo.pictures)" id="vo"}
+                        {if condition="$vo neq ''" }
+                        <div class="img-wrap">
+                            <div class="img"
+                                 style="background-image: url(__PUBLIC__{$vo})"></div>
+                        </div>
+                        {/if}
+                        {/volist}
+                    </div>
+                </div>
+            </div>
+            {/volist}
+
+        </div>
+    </div>
+
+
+</div>
+
+
+{include file="common/footer"/}

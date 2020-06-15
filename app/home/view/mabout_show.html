@@ -1,0 +1,143 @@
+{include file="common/head"/}
+
+<!--wrap-CONTENT-->
+<div class="wrap-content">
+
+    <div class="subnav">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="{:url('home/index/index')}">首页</a></li>
+                <li class="active">关于</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <style>
+        .text-banner > p, .myc  p {
+            margin-bottom: 25px;
+            font-size: 14px;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 55px;
+            font-size: 16px;
+            text-align: center;
+            color: #fff;
+            font-weight: 100
+        }
+    </style>
+    <section class="section-learnbanner">
+        <div class="text-banner">
+            <h1 class="heading-banner">{$info.title}</h1>
+
+            {$info.content}
+            <span class="navigate-bottom navigate-1"></span>
+            <video autoplay="autoplay" loop="loop" muted="muted" preload="metadata" id="learnVideo">
+                <source type="video/mp4" src="__HOME__/video/video-learn-page.mp4"/>
+                <source type="video/webm" src="__HOME__/video/video-learn-page.webm"/>
+            </video>
+        </div>
+
+    </section>
+
+    <section class="jumbotron jumbotron-history-introduction" style="background-image: url(__PUBLIC__{$info.row2_pic})">
+        <div class="container">
+            <!--<h3 class="subtitle">始于0</h3>-->
+            <h2 class="title">{$info.row2_title}</h2>
+            <p class="description">
+                {$info.row2_content}
+            </p>
+        </div>
+    </section>
+
+    <section class="jumbotron jumbotron-benefits">
+        <div class="container">
+            <!--<h3 class="subtitle">优点</h3>-->
+
+            <h2 class="title">{$info.row3_title}</h2>
+
+
+            <div class="benefits-slider">
+
+
+                {clt:list db='ad' id='a' limit="10" order="sort" where="type_id = 10"}
+                <div class="benefits-slide">
+                    <div class="benefit-content">
+                        <h3 class="visible-xs"><span>{$a.title}</span></h3>
+
+                        <div class="video-background" style="background-image: url(__PUBLIC__/{$a.pic});">
+                            <!--<span class="video-button"></span>-->
+                            <a class="iframe-src" href="https://www.youtube.com/embed/h7zyrmf4mms"></a>
+                        </div>
+                        <div class="benefit-description">
+                            <h3 class="hidden-xs">{$a.title}</h3>
+                            {$a.content}
+                        </div>
+                    </div>
+                    <div class="subtitle">耐用性</div>
+                </div>
+                {/clt:list}
+
+            </div>
+        </div>
+        <div class="video-popup modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <button type="button" class="close"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-applications">
+        <div class="container">
+            <h3 class="subtitle">应用</h3>
+            <div class="apps-block">
+                <div class="apps-text-slider">
+                    {clt:list db='ad' id='a' limit="20" order="sort" where="type_id = 11"}
+
+                    <div class="text-slide">
+                        <div class="year">{$a.sort}</div>
+                        <h4>{$a.title} </h4>
+                        {$a.content}
+
+                    </div>
+                    {/clt:list}
+
+                </div>
+                <div class="apps-img-slider">
+                    <ul>
+                        {clt:list db='ad' id='a' limit="20" order="sort" where="type_id = 11"}
+                        <li>
+                            <div class="img" style="background-image: url(__PUBLIC__{$a.pic})"></div>
+                        </li>
+                        {/clt:list}
+                    </ul>
+                </div>
+                <div class="apps-timeline"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="jumbotron jumbotron-company"
+             style="background-image: url(__HOME__/media/19706/home-technologies-1.jpg);">
+        <div class="container myc">
+            <!--<h3 class="subtitle">{$info.row5_title}</h3>-->
+
+            <h2 class="title">{$info.row5_title}</h2>
+
+            {$info.row5_conent}
+            <!--<div class="description hidden-xs">-->
+            <!--</div>-->
+
+            <!--<a href="http://us.technogelworld.com/the-company/" class="btn custom-btn btn-lg btn-white">-->
+            <!--了解更多-->
+            <!--</a>-->
+        </div>
+    </section>
+
+
+</div>
+
+
+{include file="common/footer"/}

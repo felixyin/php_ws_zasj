@@ -1,0 +1,132 @@
+{include file="common/head"/}
+
+<!--wrap-CONTENT-->
+<div class="wrap-content">
+
+    <style type="text/css" rel="stylesheet">
+        {clt:list db='debris' id='d' limit="1"  order="sort"  where="type_id = 8"}
+        {volist name=":preg_split('/;/',$d.pic_phone)" id="vo"}
+        {if condition="$vo neq ''" }
+        @media (max-width: 767px) {
+            .my-phone-banner{
+                background: url(/public/{$vo}) no-repeat center center!important;
+                background-size:cover!important;
+            }
+        }
+        {/if}
+        {/volist}
+        {/clt:list}
+    </style>
+
+
+
+    {clt:list db='debris' id='d' limit="1"  order="sort"  where="type_id = 8"}
+    <!--{volist name=":preg_split('/;/',$d.pic)" id="vo"}-->
+    <a href="{$d.url}" >
+    <section class="section-banner section-general-banner my-phone-banner " style="background: url(/public/{$vo}) no-repeat center center;">
+        <!--<div class="text-banner">-->
+            <!--<h1 class="heading-banner" style="font-weight: 100!important; font-size: 70px;">{$d.title}</h1>-->
+            <!--<a href="{$d.url}" class="btn custom-btn btn-lg ">阅读更多</a>-->
+        <!--</div>-->
+        <!--<div class="slider-banner">-->
+            <!--{volist name=":preg_split('/;/',$d.pic)" id="vo"}-->
+            <!--<div class="slide">-->
+                <!--<div class="img" style="background-image: url(/public/{$vo});"></div>-->
+            <!--</div>-->
+            <!--{/volist}-->
+        <!--</div>-->
+    </section>
+    </a>
+    <!--<div class="slide">-->
+        <!--<div class="img" style="background-image: url(/public/{$vo});"></div>-->
+    <!--</div>-->
+    <!--{/volist}-->
+    {/clt:list}
+
+    <section>
+        <div class="main-items-block">
+            <div class="row no-gutter" style="padding-bottom:0px;">
+                {clt:list db='debris' id='d' limit="2" order="sort" where="type_id = 9"}
+                <div class="col-sm-6 item item-mattresses">
+                    <div class="img"
+                         style="background-image:url(/public/{$d.pic})"></div>
+                    <div class="cnt-wrap">
+                        <div class="cnt"  style="color:white!important;">
+                            <h2 class="title-main-items" style="color:white;">{$d.title}</h2>
+                            <p class="txt">{$d.content}</p>
+                            <a class="btn custom-btn btn-md" href="{$d.url}">浏览{$d.title}系列</a>
+                        </div>
+                    </div>
+                </div>
+                {/clt:list}
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row list-articles" style="padding-bottom:0px;">
+                {clt:list db='debris' id='d' limit="4" order="sort" where="type_id = 10"}
+                <figure class="col-md-3 col-xs-6 item">
+                    <a href="index_index.html" class="img-wrap">
+                        <img src="/public{$d.pic}"
+                             alt="">
+                        <span class="hover-cnt"></span>
+                    </a>
+                    <figcaption class="cnt">
+                        <h2 class="title">{$d.title}</h2>
+
+                        <p class="txt">{$d.content}</p>
+                        <a href="{$d.url}" class="btn custom-btn btn-lg ">匆匆一览</a>
+                    </figcaption>
+                </figure>
+                {/clt:list}
+            </div>
+        </div>
+
+        {clt:list db='debris' id='d' limit="1" order="sort" where="type_id = 11"}
+        <div class="jumbotron jumbotron-technology"
+             style="background-image: url('/public/static/home/media/1016/home-technologies-1.jpg');">
+            <div class="img-bg"></div>
+            <div class="container">
+                <!--<h3 class="subtitle">Technogel&#174;: 凝胶</h3>-->
+                <h2 class="title">{$d.title}</h2>
+                <p class="description hidden-xs">
+                    {$d.content}
+                </p>
+                <!--<ul class="list-features list-unstyled list-inline" style="display: none;">-->
+                    <!--<li>-->
+                                    <!--<span class="icon-svg"-->
+                                          <!--style="background-image: url('/public/static/home/media/1017/support_relief_icon_white.png');"></span>-->
+                        <!--<span class="txt">缓解<br/>-->
+<!--压力</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                                    <!--<span class="icon-svg"-->
+                                          <!--style="background-image: url('/public/static/home/media/1018/ergonomic_support_icon_white.png');"></span>-->
+                        <!--<span class="txt">人体工程学<br/> 支撑</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                                    <!--<span class="icon-svg"-->
+                                          <!--style="background-image: url('/public/static/home/media/1019/biocompatible_icon_white.png');"></span>-->
+                        <!--<span class="txt">生物相容性 — <br/>-->
+<!--无毒及健康</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                                    <!--<span class="icon-svg"-->
+                                          <!--style="background-image: url('/public/static/home/media/1022/thermoregulation_icon_white.png');"></span>-->
+                        <!--<span class="txt">加强的透气性<br/>-->
+<!--和温度调节</span>-->
+                    <!--</li>-->
+
+                <!--</ul>-->
+                <a href="{$d.url}" class="btn custom-btn btn-lg btn-white">探索{$d.title}</a>
+            </div>
+        </div>
+        {/clt:list}
+
+
+    </section>
+
+</div>
+
+
+{include file="common/footer"/}
